@@ -1,5 +1,7 @@
-# Git branch in prompt.
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PATH="$HOME/development/rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:"
+eval "$(rbenv init -)"
+source ~/dotfiles/git-completion.bash
+source ~/dotfiles/git-prompt.bash
+export PS1='\w$(__git_ps1 "(%s)") $ '
